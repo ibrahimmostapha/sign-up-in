@@ -9,7 +9,7 @@ function Signin({ setIsAuthenticated }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('http://localhost:3000/signin', {
+    const response = await fetch('http://localhost:3000/api/auth/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,6 +57,7 @@ function Signin({ setIsAuthenticated }) {
 
         <button type="submit">Sign In</button>
       </form>
+      
     </div>
   );
 }

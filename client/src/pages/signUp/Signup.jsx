@@ -9,7 +9,7 @@ function Signup({ setIsAuthenticated }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('http://localhost:3000/signup', {
+    const response = await fetch('http://localhost:3000/api/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
