@@ -1,33 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
+
+import Signup from './pages/signUp/Signup';
+import Signin from './pages/signIn/Signin';
+import Home from './pages/home/Home';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleLogout = () => {
+    // Clear the authentication session
+    setIsAuthenticated(false);
+  };
+
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
+            <li>
+              <Link to="/signin">Sign In</Link>
+            </li>
+            <li>
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          </ul>
+        </nav>
+
+        <Switch>
+          <Route path="/signup">
+            <Signup setIsAuthenticated={setIsAuthenticated} />
+          </Route>
+          <Route path="/signin">
+            <Signin setIsAuthenticated={setIsAuthenticated} />
+          </Route>
+          <Route path="/home">
+            <Home 
+            // setIsAuthenticated={setIsAuthenticated}
+             />
+          </Route>
+          <Route path="/">
+            {isAuthenticated ? <Redirect to="/home" /> : <Redirect to="/signin" />}
+          </Route>
+        </Switch>
+      </Router>
     </div>
   )
 }
