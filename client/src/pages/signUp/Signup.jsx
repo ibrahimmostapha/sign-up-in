@@ -1,5 +1,6 @@
 import "./signup.css";
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 function Signup({ setIsAuthenticated }) {
   const [email, setEmail] = useState('');
@@ -29,9 +30,7 @@ function Signup({ setIsAuthenticated }) {
   return (
     <div>
       <h1>Sign Up</h1>
-
       {error && <div>{error}</div>}
-
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>
@@ -43,7 +42,6 @@ function Signup({ setIsAuthenticated }) {
             required
           />
         </div>
-
         <div>
           <label htmlFor="password">Password</label>
           <input
@@ -54,9 +52,12 @@ function Signup({ setIsAuthenticated }) {
             required
           />
         </div>
-
         <button type="submit">Sign Up</button>
       </form>
+      <div>
+        <p>Already have an account?</p>
+        <Link to="/signin"> Sign in</Link>
+      </div>
     </div>
   );
 }
