@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Signup from './pages/signUp/Signup';
 import Signin from './pages/signIn/Signin';
-// import Home from './pages/home/Home';
+import Home from './pages/home/Home';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,7 +13,6 @@ function App() {
     // Clear the authentication session
     setIsAuthenticated(false);
   };
-
 
   return (
     <div className="App">
@@ -33,7 +32,6 @@ function App() {
 
           {/* signIn  */}
           <Route path="/signin" element={<Signin setIsAuthenticated={setIsAuthenticated} />} />
-
 
           <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>
